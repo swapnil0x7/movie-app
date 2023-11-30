@@ -9,6 +9,7 @@ import {
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { BACKGROUND_IMG, AVTAR } from '../utils/constants';
 const Login = () => {
 	const [isSignInForm, setIsSignInForm] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
@@ -33,8 +34,7 @@ const Login = () => {
 					const user = userCredential.user;
 					updateProfile(user, {
 						displayName: name.current.value,
-						photoURL:
-							'https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png',
+						photoURL: AVTAR,
 					})
 						.then(() => {
 							const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -73,11 +73,7 @@ const Login = () => {
 	return (
 		<div>
 			<Header />
-			<img
-				className='absolute filter brightness-75'
-				src='https://assets.nflxext.com/ffe/siteui/vlv3/d1532433-07b1-4e39-a920-0f08b81a489e/67033404-2df8-42e0-a5a0-4c8288b4da2c/IN-en-20231120-popsignuptwoweeks-perspective_alpha_website_large.jpg'
-				alt='background'
-			/>
+			<img className='absolute filter brightness-75' src={BACKGROUND_IMG} alt='background' />
 			<form
 				onSubmit={(e) => e.preventDefault()}
 				className='absolute w-[30%] p-14 my-32 bg-black mx-auto right-0 left-0 text-white bg-opacity-80 rounded'>
