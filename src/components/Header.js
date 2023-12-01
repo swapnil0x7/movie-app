@@ -54,7 +54,7 @@ const Header = () => {
 					{showGptSearch && (
 						<select
 							onChange={handleLanguageChange}
-							className='p-2 px-3 m-4 bg-gray-800 text-white rounded-lg'>
+							className='p-2 px-3 m-4 bg-gray-800 text-white rounded-lg appearance-none hover:bg-red-500'>
 							{SUPPORTED_LANGUAGES.map((lang) => (
 								<option key={lang.identifier} value={lang.identifier}>
 									{lang.name}
