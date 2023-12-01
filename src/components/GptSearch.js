@@ -7,7 +7,7 @@ const GptSearch = () => {
 	return (
 		<div>
 			<img
-				className='absolute filter brightness-75 -z-10'
+				className='fixed filter brightness-75 -z-10'
 				src={BACKGROUND_IMG}
 				alt='background'
 			/>

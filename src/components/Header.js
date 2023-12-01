@@ -54,7 +54,7 @@ const Header = () => {
 					{showGptSearch && (
 						<select
 							onChange={handleLanguageChange}
-							className='p-2 px-2  m-4 bg-gray-800 text-white rounded'>
+							className='p-2 px-3 m-4 bg-gray-800 text-white rounded-lg'>
 							{SUPPORTED_LANGUAGES.map((lang) => (
 								<option key={lang.identifier} value={lang.identifier}>
 									{lang.name}
@@ -64,7 +64,7 @@ const Header = () => {
 					)}
 					<button
 						onClick={handleGptSearchClick}
-						className='px-4 py-2 my-3 bg-blue-600 rounded-lg text-white font-semibold hover:bg-white hover:text-black'>
+						className='px-4 my-4 bg-blue-600 rounded-lg text-white font-semibold hover:bg-white hover:text-black'>
 						{showGptSearch ? 'Browse' : 'GPT Search'}
 					</button>
 					<img src={AVTAR} className='w-12 h-12 m-3' alt='userIcon' />

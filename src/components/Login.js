@@ -73,7 +73,11 @@ const Login = () => {
 	return (
 		<div>
 			<Header />
-			<img className='absolute filter brightness-75' src={BACKGROUND_IMG} alt='background' />
+			<img
+				className='absolute filter brightness-75 bg-repeat-y'
+				src={BACKGROUND_IMG}
+				alt='background'
+			/>
 			<form
 				onSubmit={(e) => e.preventDefault()}
 				className='absolute w-[30%] p-14 my-32 bg-black mx-auto right-0 left-0 text-white bg-opacity-80 rounded'>
