@@ -47,10 +47,15 @@ const Header = () => {
 	};
 
 	return (
-		<div className='absolute flex justify-between w-screen px-8 py-2 bg-gradient-to-b from-black z-10'>
-			<img className='w-44' src={LOGO} alt='logo' />
+		<div className='absolute flex justify-between w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex-col md:flex-row'>
+			<img
+				onClick={handleGptSearchClick}
+				className='w-44 mx-auto md:mx-0 cursor-pointer'
+				src={LOGO}
+				alt='logo'
+			/>
 			{user && (
-				<div className='flex'>
+				<div className='flex p-2 justify-between'>
 					{showGptSearch && (
 						<select
 							onChange={handleLanguageChange}
@@ -64,13 +69,13 @@ const Header = () => {
 					)}
 					<button
 						onClick={handleGptSearchClick}
-						className='px-4 my-4 bg-blue-600 rounded-lg text-white font-semibold hover:bg-white hover:text-black'>
+						className='px-4 py-2 mx-4 my-2 bg-blue-600 rounded-lg text-white md:font-semibold hover:bg-white hover:text-black'>
 						{showGptSearch ? 'Browse' : 'GPT Search'}
 					</button>
-					<img src={AVTAR} className='w-12 h-12 m-3' alt='userIcon' />
+					<img src={AVTAR} className='hidden md:block w-12 h-12 m-3' alt='userIcon' />
 					<button
 						onClick={handleSignOut}
-						className='font-bold text-white hover:underline'>
+						className='my-3 bg-gray-800 md:bg-opacity-0 ml-4 md:ml-0 text-sm md:text-base md:font-bold text-white hover:underline rounded-lg md:rounded-none'>
 						Sign Out
 					</button>
 				</div>
