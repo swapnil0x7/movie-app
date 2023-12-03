@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { AVTAR, LOGO, SUPPORTED_LANGUAGES } from '../utils/constants';
-import { toggleGptSearchView } from '../utils/gptSlice';
+import { directToHomePage, toggleGptSearchView } from '../utils/gptSlice';
 import { changeLanguage } from '../utils/configSLice';
 
 const Header = () => {
@@ -49,17 +49,17 @@ const Header = () => {
 	return (
 		<div className='absolute flex justify-between w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex-col md:flex-row'>
 			<img
-				onClick={handleGptSearchClick}
+				onClick={() => dispatch(directToHomePage())}
 				className='w-44 mx-auto md:mx-0 cursor-pointer'
 				src={LOGO}
 				alt='logo'
 			/>
 			{user && (
-				<div className='flex p-2 justify-between'>
+				<div className='flex justify-between'>
 					{showGptSearch && (
 						<select
 							onChange={handleLanguageChange}
-							className='p-2 px-3 m-4 bg-gray-800 text-white rounded-lg appearance-none hover:bg-red-500'>
+							className='p-2 px-3 m-4 bg-gray-800 text-white rounded md:rounded-lg appearance-none hover:bg-red-500'>
 							{SUPPORTED_LANGUAGES.map((lang) => (
 								<option key={lang.identifier} value={lang.identifier}>
 									{lang.name}
@@ -69,13 +69,13 @@ const Header = () => {
 					)}
 					<button
 						onClick={handleGptSearchClick}
-						className='px-4 py-2 mx-4 my-2 bg-blue-600 rounded-lg text-white md:font-semibold hover:bg-white hover:text-black'>
+						className='px-4 mx-4 my-4 bg-blue-600 rounded md:rounded-lg text-white md:font-semibold hover:bg-white hover:text-black'>
 						{showGptSearch ? 'Browse' : 'GPT Search'}
 					</button>
 					<img src={AVTAR} className='hidden md:block w-12 h-12 m-3' alt='userIcon' />
 					<button
 						onClick={handleSignOut}
-						className='my-3 bg-gray-800 md:bg-opacity-0 ml-4 md:ml-0 text-sm md:text-base md:font-bold text-white hover:underline rounded-lg md:rounded-none'>
+						className='w-20 h-10 my-4 bg-gray-800 md:bg-opacity-0 text-sm md:text-base md:font-bold text-white hover:underline rounded md:rounded-none'>
 						Sign Out
 					</button>
 				</div>

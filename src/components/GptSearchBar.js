@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import lang from '../utils/languageConstants';
 import { useDispatch, useSelector } from 'react-redux';
-import openAI from '../utils/openai';
 import { API_OPTIONS } from '../utils/constants';
 import { addGptMovieResult } from '../utils/gptSlice';
+import openai from '../utils/openai';
 
 const GptSearchBar = () => {
 	const language_id = useSelector((store) => store.config.lang);
@@ -29,27 +29,27 @@ const GptSearchBar = () => {
 		const gptQuery =
 			'Act as a movie recommendation system and suggest some movies for the query : ' +
 			searchText.current.value +
-			'. Only give me names of 5 movies and comma separated like the example result given ahead. Example results: 3 Idiots, Dilwale, Don 2, Interstellar, Meg 2';
+			'.Only give me names of 5 movies and comma separated like the example result given ahead. Example results: 3 Idiots, Dilwale, Don 2, Interstellar, Meg 2';
 
-		// const gptResults = await openAI.completions.create({
-		// 	model: 'text-davinci-002',
-		// 	prompt: gptQuery,
-		// 	max_tokens: 6,
-		// 	temperature: 0,
-		// });
-		// console.log(gptResults.choices);
+		const gptResults = await openai.chat.completions.create({
+			messages: [{ role: 'user', content: gptQuery }],
+			model: 'gpt-3.5-turbo',
+		});
 
-		const gptResults = ['Napoleon', 'The marvels', 'The Equalizer 3', 'Fast X', 'Oppenheimer'];
+		// if (!gptResults.choices) return <Error />
 
-		const promiseArray = await gptResults.map((movie) => searchMovieTMDB(movie));
+		const gptMovies = gptResults.choices?.[0]?.message?.content.split(',');
+
+		const promiseArray = await gptMovies.map((movie) => searchMovieTMDB(movie));
 		const tmdbResults = await Promise.all(promiseArray);
+		console.log(tmdbResults);
 
-		dispatch(addGptMovieResult({ movieNames: gptResults, movieResults: tmdbResults }));
+		dispatch(addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults }));
 	};
 
 	return (
 		<div className='pt-[40%] md:pt-[10%] flex justify-center'>
-			<form className='w-full md:w-1/2 bg-opacity-0 grid grid-cols-12'>
+			<form className=' my-2 py-2 w-full md:w-1/2 bg-opacity-0 grid grid-cols-12'>
 				<input
 					type='text'
 					ref={searchText}
