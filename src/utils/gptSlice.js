@@ -19,9 +19,13 @@ const gptSlice = createSlice({
 		directToHomePage: (state) => {
 			state.showGptSearch = false;
 		},
+		setMovieNamesNull: (state, action) => {
+			state.movieNames = null;
+		},
 	},
 });
 
-export const { toggleGptSearchView, addGptMovieResult, directToHomePage } = gptSlice.actions;
+export const { toggleGptSearchView, addGptMovieResult, directToHomePage, setMovieNamesNull } =
+	gptSlice.actions;
 
 export default gptSlice.reducer;

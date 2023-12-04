@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import GptSearchBar from './GptSearchBar';
 import GptMovieSuggestions from './GptMovieSuggestions';
 import { BACKGROUND_IMG } from '../utils/constants';
 
 const GptSearch = () => {
+	const [showLoader, setShowLoader] = useState(false);
 	return (
 		<>
 			<div className='fixed filter brightness-75 -z-10'>
@@ -14,8 +15,8 @@ const GptSearch = () => {
 				/>
 			</div>
 			<div className='md:p-0'>
-				<GptSearchBar />
-				<GptMovieSuggestions />
+				<GptSearchBar setShowLoader={setShowLoader} />
+				<GptMovieSuggestions showLoader={showLoader} setShowLoader={setShowLoader} />
 			</div>
 		</>
 	);

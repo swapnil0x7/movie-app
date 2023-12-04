@@ -59,7 +59,7 @@ const Header = () => {
 					{showGptSearch && (
 						<select
 							onChange={handleLanguageChange}
-							className='p-2 px-3 m-4 bg-gray-800 text-white rounded md:rounded-lg appearance-none hover:bg-red-500'>
+							className='px-4 m-4 bg-gray-800 text-white rounded md:rounded-lg appearance-none hover:bg-red-500'>
 							{SUPPORTED_LANGUAGES.map((lang) => (
 								<option key={lang.identifier} value={lang.identifier}>
 									{lang.name}
@@ -75,7 +75,7 @@ const Header = () => {
 					<img src={AVTAR} className='hidden md:block w-12 h-12 m-3' alt='userIcon' />
 					<button
 						onClick={handleSignOut}
-						className='w-20 h-10 my-4 bg-gray-800 md:bg-opacity-0 text-sm md:text-base md:font-bold text-white hover:underline rounded md:rounded-none'>
+						className=' w-24 h-10 my-4 bg-gray-800 md:bg-opacity-0 text-sm md:text-base md:font-bold text-white hover:underline rounded md:rounded-none'>
 						Sign Out
 					</button>
 				</div>

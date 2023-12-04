@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import lang from '../utils/languageConstants';
 import { useDispatch, useSelector } from 'react-redux';
 import { API_OPTIONS } from '../utils/constants';
-import { addGptMovieResult } from '../utils/gptSlice';
+import { addGptMovieResult, setMovieNamesNull } from '../utils/gptSlice';
 import openai from '../utils/openai';
 
-const GptSearchBar = () => {
+const GptSearchBar = ({ setShowLoader }) => {
 	const language_id = useSelector((store) => store.config.lang);
 	const { search, gptSearchPlaceholder } = lang[language_id];
 	const dispatch = useDispatch();
@@ -25,6 +25,8 @@ const GptSearchBar = () => {
 	const handleGptSearchCLick = async (e) => {
 		e.preventDefault();
 
+		setShowLoader(true);
+		dispatch(setMovieNamesNull());
 		// make an API call to GPT-API
 		const gptQuery =
 			'Act as a movie recommendation system and suggest some movies for the query : ' +
@@ -36,13 +38,12 @@ const GptSearchBar = () => {
 			model: 'gpt-3.5-turbo',
 		});
 
-		// if (!gptResults.choices) return <Error />
+		// if (!gptResults.choices) return <ShimmerSimpleGallery card imageHeight={300} />;
 
 		const gptMovies = gptResults.choices?.[0]?.message?.content.split(',');
 
 		const promiseArray = await gptMovies.map((movie) => searchMovieTMDB(movie));
 		const tmdbResults = await Promise.all(promiseArray);
-		console.log(tmdbResults);
 
 		dispatch(addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults }));
 	};
@@ -58,7 +59,7 @@ const GptSearchBar = () => {
 				/>
 				<button
 					onClick={handleGptSearchCLick}
-					className='py-2 md:px-4 bg-red-600 col-span-3 mr-4 my-4 md:m-4 text-white rounded-lg shadow-lg'>
+					className='py-2 md:px-4 bg-red-600 hover:bg-red-500 col-span-3 mr-4 my-4 md:m-4 text-white rounded-lg shadow-lg'>
 					{search}
 				</button>
 			</form>
