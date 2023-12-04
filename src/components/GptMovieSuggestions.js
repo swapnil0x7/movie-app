@@ -26,7 +26,7 @@ const GptMovieSuggestions = ({ showLoader, setShowLoader }) => {
 	if (!movieNames)
 		return (
 			showLoader && (
-				<div className='w-screen flex flex-col h-[75%] absolute z-50 mx-0 p-2 md:p-4 m-4 text-8xl bg-black text-white font-bold bg-opacity-70 md:bg-opacity-[0.80]'>
+				<div className='w-screen flex flex-col h-[75%] absolute z-50 mx-0 p-6 md:p-4 m-4 text-8xl bg-black text-white font-bold bg-opacity-70 md:bg-opacity-[0.80]'>
 					<MagnifyingGlass
 						visible={true}
 						height='110'

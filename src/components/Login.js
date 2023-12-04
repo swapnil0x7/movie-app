@@ -74,7 +74,7 @@ const Login = () => {
 		<div>
 			<Header />
 			<img
-				className='h-screen object-cover md:h-auto md:w-screen md:object-cover absolute filter brightness-75 bg-repeat-y'
+				className='h-screen object-cover md:h-auto absolute filter brightness-75 bg-repeat-y'
 				src={BACKGROUND_IMG}
 				alt='background'
 			/>

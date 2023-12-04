@@ -23,4 +23,4 @@ export const SUPPORTED_LANGUAGES = [
 	{ identifier: 'spanish', name: 'Spanish' },
 ];
 
-export const OPENAI_KEY = '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';
+// export const OPENAI_KEY = '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';

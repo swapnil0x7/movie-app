@@ -1,7 +1,7 @@
 const lang = {
 	en: {
 		search: 'Search',
-		gptSearchPlaceholder: 'What would you like to watch today?',
+		gptSearchPlaceholder: 'What would you like to watch?',
 	},
 	hindi: {
 		search: 'खोजें',
@@ -9,7 +9,7 @@ const lang = {
 	},
 	spanish: {
 		search: 'buscar',
-		gptSearchPlaceholder: 'Qué te gustaría ver hoy?',
+		gptSearchPlaceholder: '¿Qué te gustaría ver?',
 	},
 };
 
